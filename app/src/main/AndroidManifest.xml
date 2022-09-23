@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.marvelapp">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:name=".app.AppConfig"
         android:allowBackup="true"
@@ -28,7 +29,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true">
         </activity>
     </application>

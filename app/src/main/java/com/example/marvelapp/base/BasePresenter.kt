@@ -3,7 +3,7 @@ package com.example.marvelapp.base
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 
-class BasePresenter<T>(view: T) {
+open class BasePresenter<T>(view: T) {
 
     var view: T? = null
     private val mCompositeDisposable: CompositeDisposable
