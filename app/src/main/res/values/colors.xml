@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="redMarvel">#ED1D24</color>
     <color name="blueMarvel">#266EF6</color>
+    <color name="viewColor">#9F9F9F</color>
 </resources>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:foreground="?attr/selectableItemBackground"
+    android:paddingTop="@dimen/small_padding"
+    android:paddingStart="@dimen/small_padding"
+    android:paddingEnd="@dimen/small_padding"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <ImageView
+        android:id="@+id/ivComic"
+        android:layout_width="@dimen/dimen_small_width"
+        android:layout_height="@dimen/dimen_small_height"
+        tools:src="@tools:sample/backgrounds/scenic" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/medium_padding"
+        android:layout_toEndOf="@+id/ivComic"
+        android:textColor="@color/blueMarvel"
+        android:textSize="@dimen/large_size"
+        android:textStyle="bold"
+        tools:text="@tools:sample/full_names" />
+
+    <TextView
+        android:id="@+id/tvDate"
+        android:textSize="@dimen/medium_size"
+        tools:text="@tools:sample/date/ddmmyy"
+        android:layout_toEndOf="@+id/ivComic"
+        android:layout_marginStart="@dimen/large_size"
+        android:layout_below="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:layout_marginTop="@dimen/small_padding"
+        android:layout_below="@+id/ivComic"
+        android:background="@color/viewColor"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/atom_dimen" />
+</RelativeLayout>
