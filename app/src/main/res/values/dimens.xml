@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="small_padding">8dp</dimen>
+    <dimen name="dimen_small_width">100dp</dimen>
+    <dimen name="dimen_small_height">140dp</dimen>
+    <dimen name="medium_padding">14dp</dimen>
+    <dimen name="large_size">16sp</dimen>
+    <dimen name="medium_size">12sp</dimen>
+    <dimen name="atom_dimen">0.5dp</dimen>
+</resources>

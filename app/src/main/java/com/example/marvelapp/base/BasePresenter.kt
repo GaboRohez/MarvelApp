@@ -1,7 +1,9 @@
 package com.example.marvelapp.base
 
+import com.example.marvelapp.R
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import java.net.SocketTimeoutException
 
 open class BasePresenter<T>(view: T) {
 
@@ -24,4 +26,12 @@ open class BasePresenter<T>(view: T) {
         mCompositeDisposable = CompositeDisposable()
     }
 
+    protected open fun processError(throwable: Throwable): Int {
+        throwable.printStackTrace()
+        return if (throwable is SocketTimeoutException) {
+            R.string.retrofit_timeout
+        } else {
+            R.string.retrofit_failure
+        }
+    }
 }

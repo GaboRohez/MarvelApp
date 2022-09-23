@@ -7,6 +7,7 @@ import java.sql.Timestamp
 class Constants {
 
     companion object {
+        const val SUCCESS = 200
         const val BASE_URL = "https://gateway.marvel.com/"
         const val VARIANT_NAME = "/portrait_xlarge"
         const val IMAGE_EXTENSION = ".jpg"

@@ -1,6 +1,7 @@
 package com.example.marvelapp.ui.comics_list.Presenter
 
-import android.util.Log
+import com.example.marvelapp.Constants.Constants
+import com.example.marvelapp.app.AppConfig
 import com.example.marvelapp.base.BasePresenter
 import com.example.marvelapp.ui.comics_list.Interactor.ComicsInteractor
 
@@ -16,17 +17,18 @@ class ComicsPresenter(view: ComicsContract.View?) : BasePresenter<ComicsContract
     }
 
     override fun getAllComics() {
-        addSubscription(interactor.getAllComics()
-            .doOnSubscribe {
-                //disposable -> view.showLoader()
-            }
-            .doFinally {
-                //view.hideLoader()
-            }
+        addSubscription(interactor
+            .getAllComics()
+            .doOnSubscribe { disposable -> view!!.showLoader() }
+            .doAfterTerminate { view!!.hideLoader() }
             .subscribe({ response ->
-                Log.d(TAG, "getAllComics: " + response.body())
+                if (Constants.SUCCESS == response.body()!!.code) {
+                    view!!.showComics(response.body()!!.data!!.results)
+                } else {
+                    view!!.showErrorDialog(AppConfig.resourceManager!!.getCommonError)
+                }
             }) { throwable ->
-                Log.d(TAG, "getAllComics: " + throwable.message)
+                view!!.showErrorDialog(processError(throwable))
             })
     }
 }
