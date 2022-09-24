@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.marvelapp.base.BaseFragment
 import com.example.marvelapp.databinding.FragmentComicsListBinding
 import com.example.marvelapp.dto.Results
@@ -13,11 +14,15 @@ import com.example.marvelapp.ui.comics_list.Presenter.ComicsContract
 import com.example.marvelapp.ui.comics_list.Presenter.ComicsPresenter
 import com.example.marvelapp.ui.comics_list.adapter.ComicsAdapter
 
+
 class ComicsListFragment : BaseFragment<ComicsContract.Presenter, FragmentComicsListBinding>(),
     ComicsContract.View,
     ComicsAdapter.ComicsIn {
 
     private val TAG = "ComicsListFragment"
+    private var offset: Int = 0
+    private var limit: Int = 20
+    private var readyToLoad = false
 
     lateinit var adapter: ComicsAdapter
     var comicsList: ArrayList<Results> = ArrayList()
@@ -39,7 +44,8 @@ class ComicsListFragment : BaseFragment<ComicsContract.Presenter, FragmentComics
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setUpRecycler()
-        presenter!!.getAllComics()
+        setUpEvents()
+        presenter!!.getAllComics(offset, limit)
     }
 
     private fun setUpRecycler() {
@@ -50,8 +56,31 @@ class ComicsListFragment : BaseFragment<ComicsContract.Presenter, FragmentComics
         adapter!!.notifyDataSetChanged()
     }
 
+    private fun setUpEvents() {
+        binding!!.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                super.onScrolled(recyclerView, dx, dy)
+                if (dy > 0) {
+                    val visibleItemCount: Int = binding!!.recyclerView.layoutManager!!.childCount
+                    val totalItemCount: Int = binding!!.recyclerView.layoutManager!!.itemCount
+                    val pastVisibleItems =
+                        (recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
+
+                    if (readyToLoad) {
+                        if (visibleItemCount + pastVisibleItems >= totalItemCount) {
+                            readyToLoad = false
+                            offset += 20
+                            limit += 20
+                            presenter!!.getAllComics(offset, limit)
+                        }
+                    }
+                }
+            }
+        })
+    }
+
     override fun showComics(comics: ArrayList<Results>) {
-        comicsList.clear()
+        readyToLoad = true
         comicsList.addAll(comics)
         adapter.notifyDataSetChanged()
     }

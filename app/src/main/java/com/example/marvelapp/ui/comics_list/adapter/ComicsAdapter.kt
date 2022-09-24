@@ -44,7 +44,7 @@ class ComicsAdapter(
         )
 
         Glide.with(context!!)
-            .load(list[position].thumbnail!!.path + Constants.IMAGE_EXTENSION)
+            .load(list[position].thumbnail!!.path + Constants.VARIANT_NAME + Constants.IMAGE_EXTENSION)
             .diskCacheStrategy(DiskCacheStrategy.DATA)
             .into(holder.binding.ivComic)
 

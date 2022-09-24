@@ -1,6 +1,5 @@
 package com.example.marvelapp.api
 
-import com.example.marvelapp.Constants.Constants
 import com.example.marvelapp.dto.ComicsResponse
 import io.reactivex.Single
 import retrofit2.Response
@@ -11,8 +10,10 @@ interface EndPoint {
 
     @GET("v1/public/comics")
     fun getAllComics(
-        @Query("apikey") apikey: String = Constants.API_KEY,
-        @Query("ts") ts: String = Constants.timeStamp,
-        @Query("hash") hash: String = Constants.hash()
+        @Query("apikey") apikey: String,
+        @Query("ts") ts: String,
+        @Query("hash") hash: String,
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
     ): Single<Response<ComicsResponse>>
 }

@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.10701438848920863" />
         <entry key="app/src/main/res/drawable/splash_background.xml" value="0.13" />
         <entry key="app/src/main/res/font/heebo_thin.xml" value="0.28802083333333334" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.24375" />
