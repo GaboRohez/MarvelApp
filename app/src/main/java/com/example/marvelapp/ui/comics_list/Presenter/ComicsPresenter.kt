@@ -16,14 +16,20 @@ class ComicsPresenter(view: ComicsContract.View?) : BasePresenter<ComicsContract
         this.interactor = ComicsInteractor()
     }
 
-    override fun getAllComics() {
+    override fun getAllComics(offset: Int, limit: Int) {
         addSubscription(interactor
-            .getAllComics()
-            .doOnSubscribe { disposable -> view!!.showLoader() }
+            .getAllComics(offset, limit)
+            .doOnSubscribe { view!!.showLoader() }
             .doAfterTerminate { view!!.hideLoader() }
             .subscribe({ response ->
-                if (Constants.SUCCESS == response.body()!!.code) {
-                    view!!.showComics(response.body()!!.data!!.results)
+                if (response.code() == 200) {
+                    if (Constants.SUCCESS == response.body()!!.code) {
+                        view!!.showComics(response.body()!!.data!!.results)
+                    } else {
+                        view!!.showErrorDialog(AppConfig.resourceManager!!.getCommonError)
+                    }
+                } else if (response.code() == 409) {
+                    view!!.showErrorDialog(AppConfig.resourceManager!!.getMaxItemError)
                 } else {
                     view!!.showErrorDialog(AppConfig.resourceManager!!.getCommonError)
                 }

@@ -12,11 +12,11 @@ interface ComicsContract {
     }
 
     interface Presenter {
-        fun getAllComics()
+        fun getAllComics(offset: Int, limit: Int)
 
     }
 
     interface Interactor {
-        fun getAllComics(): Single<Response<ComicsResponse>>
+        fun getAllComics(offset: Int, limit: Int): Single<Response<ComicsResponse>>
     }
 }

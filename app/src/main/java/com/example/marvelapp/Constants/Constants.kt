@@ -10,6 +10,7 @@ class Constants {
         const val SUCCESS = 200
         const val BASE_URL = "https://gateway.marvel.com/"
         const val VARIANT_NAME = "/portrait_xlarge"
+        const val SMALL_VARIANT_NAME = "/portrait_small"
         const val IMAGE_EXTENSION = ".jpg"
 
         const val API_KEY = "d59ba3645be7a778a5f77224b4dad5bb"

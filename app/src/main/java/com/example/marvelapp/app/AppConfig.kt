@@ -30,6 +30,8 @@ class AppConfig : Application() {
             get() = resources.getString(R.string.app_name)
         val getCommonError: String
             get() = resources.getString(R.string.common_error)
+        val getMaxItemError: String
+            get() = resources.getString(R.string.error_maximum_items)
     }
 
 }
