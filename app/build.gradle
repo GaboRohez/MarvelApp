@@ -5,6 +5,16 @@ plugins {
 }
 
 android {
+
+    signingConfigs {
+        ReleaseSigning {
+            keyAlias = 'keystore'
+            keyPassword 'm4rv3l'
+            storeFile file('../keystore')
+            storePassword 'm4rv3l'
+        }
+    }
+
     compileSdk 32
 
     defaultConfig {
