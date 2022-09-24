@@ -1,8 +1,11 @@
 package com.example.marvelapp.dto
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 
+@Parcelize
 data class Items(
 
     @SerializedName("resourceURI")
@@ -12,4 +15,4 @@ data class Items(
     @SerializedName("role")
     var role: String? = null
 
-)
+) : Parcelable

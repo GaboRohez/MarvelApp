@@ -4,15 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.marvelapp.R
 import com.example.marvelapp.base.BaseFragment
 import com.example.marvelapp.databinding.FragmentComicsListBinding
 import com.example.marvelapp.dto.Results
 import com.example.marvelapp.ui.comics_list.Presenter.ComicsContract
 import com.example.marvelapp.ui.comics_list.Presenter.ComicsPresenter
 import com.example.marvelapp.ui.comics_list.adapter.ComicsAdapter
+import com.example.marvelapp.ui.detail.view.DetailFragment
 
 
 class ComicsListFragment : BaseFragment<ComicsContract.Presenter, FragmentComicsListBinding>(),
@@ -86,6 +87,11 @@ class ComicsListFragment : BaseFragment<ComicsContract.Presenter, FragmentComics
     }
 
     override fun onComicClick(comic: Results?) {
-        Toast.makeText(requireActivity(), comic!!.title, Toast.LENGTH_LONG).show()
+        addFragment(
+            DetailFragment.newInstance(comic),
+            DetailFragment::class.java.name,
+            R.id.contentFragment
+        )
+        //Toast.makeText(requireActivity(), comic!!.title, Toast.LENGTH_LONG).show()
     }
 }

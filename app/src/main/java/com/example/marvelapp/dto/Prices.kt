@@ -1,8 +1,11 @@
 package com.example.marvelapp.dto
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 
+@Parcelize
 data class Prices(
 
     @SerializedName("type")
@@ -10,4 +13,4 @@ data class Prices(
     @SerializedName("price")
     var price: Float? = null
 
-)
+) : Parcelable
