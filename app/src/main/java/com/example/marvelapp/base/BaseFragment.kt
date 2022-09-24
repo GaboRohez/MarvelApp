@@ -18,14 +18,6 @@ open class BaseFragment<T, B : ViewBinding?> : Fragment(), BaseView {
         super.onViewCreated(view, savedInstanceState)
     }
 
-    protected open fun addFragment(fragment: Fragment?, TAG: String?, id: Int) {
-        if (fragment == null) return
-        val fm = activity!!.supportFragmentManager
-        val tr = fm.beginTransaction()
-        tr.add(id, fragment)
-        tr.commitAllowingStateLoss()
-    }
-
     override fun showLoader() {
         getLoader()!!.show(childFragmentManager, CustomLoader::class.java.name)
     }

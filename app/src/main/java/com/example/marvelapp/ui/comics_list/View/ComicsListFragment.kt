@@ -4,9 +4,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.core.os.bundleOf
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.marvelapp.R
 import com.example.marvelapp.base.BaseFragment
 import com.example.marvelapp.databinding.FragmentComicsListBinding
 import com.example.marvelapp.dto.Results
@@ -19,6 +21,7 @@ class ComicsListFragment : BaseFragment<ComicsContract.Presenter, FragmentComics
     ComicsContract.View,
     ComicsAdapter.ComicsIn {
 
+    private var isFirstTime: Boolean = true
     private val TAG = "ComicsListFragment"
     private var offset: Int = 0
     private var limit: Int = 20
@@ -37,15 +40,20 @@ class ComicsListFragment : BaseFragment<ComicsContract.Presenter, FragmentComics
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentComicsListBinding.inflate(inflater, container, false)
+        if (binding == null) {
+            binding = FragmentComicsListBinding.inflate(inflater, container, false)
+        }
         return binding!!.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setUpRecycler()
-        setUpEvents()
-        presenter!!.getAllComics(offset, limit)
+        if (isFirstTime) {
+            setUpRecycler()
+            setUpEvents()
+            presenter!!.getAllComics(offset, limit)
+            isFirstTime = false
+        }
     }
 
     private fun setUpRecycler() {
@@ -86,6 +94,7 @@ class ComicsListFragment : BaseFragment<ComicsContract.Presenter, FragmentComics
     }
 
     override fun onComicClick(comic: Results?) {
-        Toast.makeText(requireActivity(), comic!!.title, Toast.LENGTH_LONG).show()
+        var bundle = bundleOf("result" to comic)
+        view?.findNavController()?.navigate(R.id.detailFragment, bundle)
     }
 }

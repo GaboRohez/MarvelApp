@@ -1,8 +1,11 @@
 package com.example.marvelapp.dto
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.parcelize.Parcelize
 
 
+@Parcelize
 data class Results(
 
     @SerializedName("id")
@@ -34,4 +37,4 @@ data class Results(
     @SerializedName("creators")
     var creators: Creators? = Creators()
 
-)
+) : Parcelable

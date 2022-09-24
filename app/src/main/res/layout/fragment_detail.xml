@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:focusable="true"
+    android:padding="@dimen/medium_padding"
+    tools:context=".ui.detail.view.DetailFragment">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/ivComic"
+                tools:scaleType="centerCrop"
+                android:scaleType="centerCrop"
+                tools:src="@tools:sample/backgrounds/scenic"
+                android:layout_width="180dp"
+                android:layout_height="260dp" />
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:paddingStart="@dimen/small_padding"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/tvName"
+                    android:textColor="@color/blueMarvel"
+                    android:textStyle="bold"
+                    android:textSize="@dimen/large_size"
+                    tools:text="@tools:sample/full_names"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <View
+                    android:layout_marginTop="@dimen/small_padding"
+                    android:layout_marginBottom="@dimen/atom_dimen"
+                    android:background="@color/viewColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/atom_dimen" />
+
+                <TextView
+                    android:id="@+id/tvLastUpdate"
+                    android:textStyle="bold"
+                    tools:text="@tools:sample/date/mmddyy"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvPages"
+                    tools:text="Pages: 122"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    tools:text="Price $12.00"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contentDescription"
+            android:visibility="gone"
+            tools:visibility="visible"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_marginTop="@dimen/small_padding"
+                android:layout_marginBottom="@dimen/small_padding"
+                android:background="@color/viewColor"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/atom_dimen" />
+
+            <TextView
+                android:text="@string/description"
+                android:textColor="@color/blueMarvel"
+                android:textStyle="bold"
+                android:textSize="@dimen/large_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/tvDescription"
+                android:textStyle="bold"
+                tools:text="@tools:sample/lorem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/contentCreators"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:layout_marginTop="@dimen/small_padding"
+                android:layout_marginBottom="@dimen/small_padding"
+                android:background="@color/viewColor"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/atom_dimen" />
+
+            <TextView
+                android:text="@string/creators"
+                android:textColor="@color/blueMarvel"
+                android:textStyle="bold"
+                android:textSize="@dimen/large_size"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvCreators"
+                tools:text="@tools:sample/lorem"
+                tools:listitem="@layout/item_role"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
