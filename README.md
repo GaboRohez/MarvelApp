@@ -17,6 +17,7 @@ MarvelApp es una App para Android la cual consume la API publica de [Marvel Deve
 
 ### Estructura de navegación
 * Se uso una estructura de diferentes paquetes para poder ubicar de manera mas sencilla y rapida cada componente del proyecto
+
 ![alt text](https://github.com/GaboRohez/MarvelApp/blob/master/app/src/main/res/drawable/packages.png?raw=true)
 
 
